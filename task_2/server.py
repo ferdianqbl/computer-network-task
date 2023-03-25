@@ -13,9 +13,9 @@ class ProcessTheClient(threading.Thread):
         while True:
             data = self.connection.recv(1024).decode('utf-8')
             if data.startswith("TIME") and data.endswith("\r\n"):
-                current_time = time.strftime("%H:%M:%S")
-                response = f"JAM {current_time}\r\n"
-                self.connection.sendall(response.encode('utf-8'))
+                time_now = time.strftime("%H:%M:%S")
+                message = f"JAM {time_now}\r\n"
+                self.connection.sendall(message.encode('utf-8'))
             else:
                 break
         self.connection.close()
