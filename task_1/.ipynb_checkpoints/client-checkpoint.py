@@ -18,7 +18,7 @@ try:
     sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 
     # Connect the socket to the port where the server is listening
-    server_address = ('36b9b80dbf7a', 10000)
+    server_address = ('f2c5065ea96c', 10000)
     logging.info(f"connecting to {server_address}")
     sock.connect(server_address)
 
