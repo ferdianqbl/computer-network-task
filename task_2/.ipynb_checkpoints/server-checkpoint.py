@@ -3,12 +3,6 @@ import threading
 import logging
 import time
 
-class Server(threading.Thread):
-    def __init__(self):
-        self.the_clients = []
-        self.my_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-        threading.Thread.__init__(self)
-
 class ProcessTheClient(threading.Thread):
     def __init__(self,connection,address):
         self.connection = connection
@@ -17,10 +11,20 @@ class ProcessTheClient(threading.Thread):
 
     def run(self):
         while True:
-            data = self.connection.recv(1024)
+            data = self.connection.recv(1024).decode('utf-8')
+            if data.startswith("TIME") and data.endswith("\r\n"):
+                current_time = time.strftime("%H:%M:%S")
+                response = f"JAM {current_time}\r\n"
+                self.connection.sendall(response.encode('utf-8'))
             else:
                 break
         self.connection.close()
+
+class Server(threading.Thread):
+    def __init__(self):
+        self.the_clients = []
+        self.my_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+        threading.Thread.__init__(self)
 
     def run(self):
         self.my_socket.bind(('0.0.0.0',45000))
@@ -35,8 +39,8 @@ class ProcessTheClient(threading.Thread):
 
 
 def main():
-    server = Server()
-    server.start()
+    svr = Server()
+    svr.start()
 
 if __name__=="__main__":
     main()
