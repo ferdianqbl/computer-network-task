@@ -1,20 +1,19 @@
 from socket import *
 import socket
-import threading
 import time
 import sys
 import logging
+import multiprocessing
 from http import HttpServer
-from multiprocessing import Process
 
 httpserver = HttpServer()
 
 
-class ProcessTheClient(Process):
+class ProcessTheClient(multiprocessing.Process):
     def __init__(self, connection, address):
         self.connection = connection
         self.address = address
-        Process.__init__(self)
+        multiprocessing.Process.__init__(self)
 
     def run(self):
         rcv = ""
@@ -45,12 +44,12 @@ class ProcessTheClient(Process):
         self.connection.close()
 
 
-class Server(Process):
+class Server(multiprocessing.Process):
     def __init__(self):
         self.the_clients = []
         self.my_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         self.my_socket.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
-        Process.__init__(self)
+        multiprocessing.Process.__init__(self)
 
     def run(self):
         self.my_socket.bind(('0.0.0.0', 8889))
@@ -67,8 +66,6 @@ class Server(Process):
 def main():
     svr = Server()
     svr.start()
-    for c in svr.the_clients:
-        c.join()
 
 
 if __name__ == "__main__":

@@ -1,4 +1,6 @@
+import sys
 import os.path
+import uuid
 from glob import glob
 from datetime import datetime
 
@@ -63,10 +65,10 @@ class HttpServer:
 
     def http_get(self, object_address, headers):
         files = glob('*')
-        print(f"ISI FILE: {files}")
-
+        # print(files)
         if (object_address == '/'):
             return self.response(200, 'OK', 'Ini Adalah web Server percobaan', dict())
+
         if (object_address == '/video'):
             return self.response(302, 'Found', '', dict(location='https://youtu.be/katoxpnTf04'))
         if (object_address == '/santai'):
