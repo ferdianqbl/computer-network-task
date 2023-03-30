@@ -64,7 +64,7 @@ class Server(Process):
 
     def run(self):
         self.my_socket.bind(('0.0.0.0', 8889))
-        self.my_socket.listen(1)
+        self.my_socket.listen(200)
         while True:
             self.connection, self.client_address = self.my_socket.accept()
             try:
