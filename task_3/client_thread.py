@@ -1,26 +1,13 @@
-from threading import Thread
-import sys
 from kirim_data import kirim_data
+import sys
 
-
-def client_thread():
-    threads = []
-    count = 0
+def client():
     try:
-        # count = AtomicCounter()
-
         for i in range(sys.maxsize):
-            threads.append(Thread(target=kirim_data))
-            # count.increment()
-            count += 1
-            threads[i].start()
+            kirim_data(nama=f"thread ke -{i}")
 
-        print(f"client {count}")
-        for thread in threads:
-            thread.join()
     except Exception:
         print("limit reached")
 
-
-if __name__ == '__main__':
-    client_thread()
+if __name__ == "__main__":
+    client()

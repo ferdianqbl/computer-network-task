@@ -2,6 +2,9 @@ import socket
 import threading
 import logging
 import time
+import request_counter
+
+request_counter = request_counter.Counter()
 
 
 class ProcessTheClient(threading.Thread):
@@ -14,6 +17,8 @@ class ProcessTheClient(threading.Thread):
         while True:
             data = self.connection.recv(1024).decode('utf-8')
             if data.startswith("TIME") and data.endswith("\r\n"):
+                request_counter.increment()
+                print(f"Request From Client {request_counter.get_count()}")
                 time_now = time.strftime("%H:%M:%S")
                 message = f"JAM {time_now}\r\n"
                 self.connection.sendall(message.encode('utf-8'))
@@ -34,9 +39,7 @@ class Server(threading.Thread):
         self.my_socket.listen(1)
         while True:
             self.connection, self.client_address = self.my_socket.accept()
-            self.count_client += 1
-            logging.warning(
-                f"connection from {self.client_address} that is {self.count_client} client(s)")
+            logging.warning(f"connection from {self.client_address}")
 
             clt = ProcessTheClient(self.connection, self.client_address)
             clt.start()
