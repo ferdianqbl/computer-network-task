@@ -1,6 +1,3 @@
-import sys
-import socket
-import logging
 import time
 from concurrent.futures import ThreadPoolExecutor 
 from kirim_data import kirim_data

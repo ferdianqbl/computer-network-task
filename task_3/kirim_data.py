@@ -1,7 +1,6 @@
-import sys
 import socket
 import logging
-import time
+
 
 def kirim_data(nama=""):
     sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
@@ -20,7 +19,7 @@ def kirim_data(nama=""):
         amount_received = 0
         amount_expected = len(message)
         while amount_received < amount_expected:
-            data = sock.recv(1024).decode('utf-8')
+            data = sock.recv(16).decode('utf-8')
             amount_received += len(data)
             logging.warning(f"[DITERIMA DARI SERVER] {data}")
     finally:
