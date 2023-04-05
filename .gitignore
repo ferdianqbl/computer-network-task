@@ -2,3 +2,4 @@ environment
 progjar
 */.ipynb_checkpoints/
 */__pycache__/
+resources
