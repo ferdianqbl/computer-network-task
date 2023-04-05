@@ -22,4 +22,4 @@ def runThreadProcess(d=0):
 
 
 if __name__ == '__main__':
-    runThreadProcess(10)
+    runThreadProcess(20)
