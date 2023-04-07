@@ -22,13 +22,11 @@ def client_thread():
 
 
 def client_process():
-    processes = []
     start = datetime.now()
     for k in range(maxsize):
-        processes.append(Process(target=kirim_data, args=(k,)))
-        processes[k].start()
-    for k in range(processes):
-        processes[k].join()
+        process = Process(target=kirim_data, args=(k,))
+        process.start()
+        process.join()
 
     end = datetime.now() - start
     print(f"Request total {maxsize}")
@@ -46,9 +44,9 @@ def client_pool():
             for pool in as_completed(pools):
                 pool.result()
 
-            end = datetime.now() - start
-            print(f"Request total {maxsize}")
-            print(f"Waktu TOTAL yang dibutuhkan {end} detik")
+        end = datetime.now() - start
+        print(f"Request total {maxsize}")
+        print(f"Waktu TOTAL yang dibutuhkan {end} detik")
     except Exception:
         print("limit reached")
 
