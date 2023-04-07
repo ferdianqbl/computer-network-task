@@ -7,7 +7,7 @@ def runThreadpool():
     pools = []
     try:
         with ThreadPoolExecutor() as executor:
-            for k in range(3021):
+            for k in range(maxsize):
                 pools = [executor.submit(kirim_data, nama=f"thread ke -{k}")]
 
             for pool in as_completed(pools):
