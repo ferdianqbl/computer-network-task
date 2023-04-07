@@ -8,16 +8,10 @@ maxsize = 2000
 
 
 def client_thread():
-    threads = []
     try:
         start = datetime.now()
         for i in range(maxsize):
-            threads.append(Thread(target=kirim_data))
-
-            threads[i].start()
-
-        for thread in threads:
-            thread.join()
+            kirim_data(i)
 
         end = datetime.now() - start
         print(f"Request total {maxsize}")
@@ -61,5 +55,5 @@ def client_pool():
 
 if __name__ == '__main__':
     client_thread()
-    client_process()
-    client_pool()
+    # client_process()
+    # client_pool()
