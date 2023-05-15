@@ -17,13 +17,13 @@ class ProcessTheClient(threading.Thread):
         threading.Thread.__init__(self)
 
     def run(self):
-        data_diterima = ""
+        isifile = ""
         while True:
             data = self.connection.recv(32)
             if data:
-                data_diterima += data.decode()
-                if data_diterima[-1:] == '\n':
-                    hasil = fp.proses_string(data_diterima)
+                isifile += data.decode()
+                if isifile[-1:] == '\n':
+                    hasil = fp.proses_string(isifile)
                     hasil = hasil+"\r\n\r\n"
                     self.connection.sendall(hasil.encode('utf-8'))
             else:
@@ -32,7 +32,7 @@ class ProcessTheClient(threading.Thread):
 
 
 class Server(threading.Thread):
-    def __init__(self, ipaddress='0.0.0.0', port=9000):
+    def __init__(self, ipaddress='0.0.0.0', port=6666):
         self.ipinfo = (ipaddress, port)
         self.the_clients = []
         self.my_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
@@ -53,7 +53,7 @@ class Server(threading.Thread):
 
 
 def main():
-    svr = Server(ipaddress='0.0.0.0', port=7777)
+    svr = Server(ipaddress='0.0.0.0', port=6666)
     svr.start()
 
 

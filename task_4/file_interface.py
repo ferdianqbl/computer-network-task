@@ -31,23 +31,23 @@ class FileInterface:
             filename = params[0]
             if (filename == ''):
                 return None
-            isifile = base64.b64decode(params[1])
             fp = open(f"{filename}", 'wb')
+            isifile = base64.b64decode(params[1])
             fp.write(isifile)
             fp.close()
             return dict(status='OK', data='File berhasil ditambahkan')
         except Exception as e:
             return dict(status='ERROR', data=str(e))
 
-    # def delete(self, params=[]):
-    #     try:
-    #         filename = params[0]
-    #         if (filename == ''):
-    #             return None
-    #         os.remove(filename)
-    #         return dict(status='OK', data='File berhasil dihapus')
-    #     except Exception as e:
-    #         return dict(status='ERROR', data=str(e))
+    def remove(self, params=[]):
+        try:
+            filename = params[0]
+            if (filename == ''):
+                return None
+            os.remove(filename)
+            return dict(status='OK', data='File berhasil dihapus')
+        except Exception as e:
+            return dict(status='ERROR', data=str(e))
 
 
 if __name__ == '__main__':
