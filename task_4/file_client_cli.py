@@ -72,7 +72,7 @@ def remote_add(filename=""):
     fp = open(filename, 'rb')
     isifile = base64.b64encode(fp.read()).decode('utf-8')
     fp.close()
-    command_str = f"   ADD   {filename} {isifile}\n"
+    command_str = f"ADD {filename} {isifile}\n"
     hasil = send_command(command_str)
     if (hasil['status'] == 'OK'):
         print(f"File {filename} berhasil ditambahkan")
@@ -98,9 +98,9 @@ def remote_remove(filename=""):
 if __name__ == '__main__':
     server_address = ('172.16.16.101', 6666)
     # remote_get('rfc2616.pdf')
-    remote_remove("rfc2616.pdf")
-    remote_list()
-    remote_add("rfc2616.pdf")
-    remote_list()
+    # remote_remove("rfc2616.pdf")
+    # remote_list()
+    remote_add("contoh.txt")
+    # remote_list()
     # remote_remove("rfc2616.pdf")
     # remote_list()

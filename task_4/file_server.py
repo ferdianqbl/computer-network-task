@@ -23,9 +23,9 @@ class ProcessTheClient(threading.Thread):
             if data:
                 isifile += data.decode()
                 if isifile[-1:] == '\n':
-                    hasil = fp.proses_string(isifile)
-                    hasil = hasil+"\r\n\r\n"
-                    self.connection.sendall(hasil.encode('utf-8'))
+                    isifile = fp.proses_string(isifile)
+                    isifile = isifile+"\r\n\r\n"
+                    self.connection.sendall(isifile.encode('utf-8'))
             else:
                 break
         self.connection.close()
