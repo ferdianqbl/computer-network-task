@@ -42,8 +42,6 @@ def ProcessTheClient(connection,address):
 		connection.close()
 		return
 
-
-
 def Server(portnumber=8889):
 	the_clients = []
 	my_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
@@ -51,6 +49,7 @@ def Server(portnumber=8889):
 
 	my_socket.bind(('0.0.0.0', portnumber))
 	my_socket.listen(1)
+	logging.warning("running on port {}" . format(portnumber))
 
 	with ProcessPoolExecutor(20) as executor:
 		while True:
@@ -62,10 +61,6 @@ def Server(portnumber=8889):
 				jumlah = ['x' for i in the_clients if i.running()==True]
 				print(jumlah)
 
-
-
-
-
 def main():
 	portnumber=8000
 	try:
@@ -76,4 +71,3 @@ def main():
 
 if __name__=="__main__":
 	main()
-
