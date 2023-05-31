@@ -97,10 +97,10 @@ def remote_remove(filename=""):
 
 if __name__ == '__main__':
     server_address = ('172.16.16.101', 6666)
-    # remote_get('rfc2616.pdf')
-    # remote_remove("rfc2616.pdf")
-    # remote_list()
-    remote_add("contoh.txt")
+    remote_get('donalbebek.jpg')
+    remote_add("contoh.txt") 
+    remote_remove("rfc2616.pdf")
+    remote_list()
     # remote_list()
     # remote_remove("rfc2616.pdf")
     # remote_list()
