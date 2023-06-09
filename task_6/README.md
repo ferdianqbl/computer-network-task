@@ -1,5 +1,12 @@
-# <b>Tugas 5 - Pemrograman Jaringan A</b>
+# <b>Tugas 6 - Pemrograman Jaringan A</b>
 
 - Nama : Muhammad Ferdian Iqbal
 - NRP : 5025201020
 <hr>
+
+## Fungsionalitas
+
+<hr>
+1. Komunikasi dalam satu server
+  - send private message
+  - inbox
