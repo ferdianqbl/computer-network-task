@@ -4,9 +4,11 @@
 - NRP : 5025201020
 <hr>
 
-## Fungsionalitas
+## Fungsionalitas <hr>
 
-<hr>
-1. Komunikasi dalam satu server
-  - send private message
-  - inbox
+I. Komunikasi dalam satu server
+
+- send private message
+- inbox
+
+II. Komunikasi dengan server lain
